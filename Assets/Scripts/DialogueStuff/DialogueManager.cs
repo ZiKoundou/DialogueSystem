@@ -24,10 +24,7 @@ public class DialogueManager : Singleton<DialogueManager>
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            StartDialogue("JohnGreeting");
-        }
+
 
         if (m_currentLine != null && m_currentWaitTime > 0.0f)
         {
@@ -92,7 +89,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
-    void StartDialogue(string dialogueName)
+    public void StartDialogue(string dialogueName)
     {
         if (m_DialogueTable.TryGetValue(dialogueName, out m_currentLine))
         {
