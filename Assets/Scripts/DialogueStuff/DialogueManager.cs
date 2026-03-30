@@ -95,11 +95,13 @@ public class DialogueManager : Singleton<DialogueManager>
         {
             m_currentWaitTime = kDefaultTime;
             EventDispatcher.instance.SendEvent<ToggleLock>(new ToggleLock {value = false});
+            //Tell UI system to show dialogue
             EventDispatcher.instance.SendEvent<ShowUI>(new ShowUI
             {
                 text = m_currentLine.dialogue,
             });
-            //Tell UI system to show dialogue
+
+            
             //Tell Audio System to play audio
             if (m_currentLine.dialogueAudio != null)
             {

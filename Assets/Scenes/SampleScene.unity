@@ -885,6 +885,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4b6910c8e9b720443b1a031d8d4906a9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  charSpeed: 0.035
   UICanvas: {fileID: 858308318}
   dialogueText: {fileID: 263372688}
   buttonPrefab: {fileID: 1169562571819435597, guid: b854a45560e03af499e5e858c4878d71, type: 3}

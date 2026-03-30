@@ -5,12 +5,16 @@ using System.Collections.Generic;
 
 public class UIManager : Singleton<UIManager>
 {
+    
+    public float charSpeed = 0.2f;
     public GameObject UICanvas;
     public TMPro.TextMeshProUGUI dialogueText;
     public GameObject buttonPrefab;
     public Transform buttonContainer;
 
     private List<GameObject> activeButtons = new List<GameObject>();
+    private TextReveal typeWriter = null;
+    private bool isRevealing = false;
     private void OnEnable()
     {
         EventDispatcher.instance.AddListener<ShowUI>(ShowDialogueText);
@@ -60,13 +64,24 @@ public class UIManager : Singleton<UIManager>
     private void ShowDialogueText(ShowUI evtData)
     {
         UICanvas.SetActive(true);
-        dialogueText.text = evtData.text;
-
-        Debug.Log("YOOOO!  This works!!!!!!");
+        typeWriter = new TextReveal(evtData.text, charSpeed);
+        dialogueText.text = typeWriter.GetTextReveal();
+        isRevealing = true;
+        
+        
     }
     // Update is called once per frame
     void Update()
     {
+        if (isRevealing)// if the text is not revealed
+        {
+            typeWriter.Update();// update the time 
+            dialogueText.text = typeWriter.GetTextReveal();// get the current index
+            if(typeWriter.IsTextRevealed())
+            {
+                isRevealing = false;
+            }
+        }
         
     }
 }
