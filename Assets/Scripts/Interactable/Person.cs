@@ -7,10 +7,6 @@ public class Person : MonoBehaviour, IInteractable
 
     public void Interact()
     {
-        Debug.Log("Dialogue Opened");
-        if (Input.GetKeyUp(KeyCode.E))
-        {
-            DialogueManager.instance.StartDialogue(dialogueName);
-        }
+        DialogueManager.instance.StartDialogue(dialogueName);
     }
 }

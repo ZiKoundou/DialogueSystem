@@ -2,10 +2,10 @@ using UnityEngine;
 
 public class MouseController : MonoBehaviour
 {
-    FirstPersonController fps;
+    FirstPersonController fpc;
     void Start()
     {
-        fps = FindFirstObjectByType<FirstPersonController>();
+        fpc = FindFirstObjectByType<FirstPersonController>();
     }
     void OnEnable()
     {
@@ -23,9 +23,9 @@ public class MouseController : MonoBehaviour
     //true: normal fpsstuff
     private void MouseStateDialougueToggle(ToggleLock playerstate)
     {
-        fps.cameraCanMove = playerstate.value;
-        fps.playerCanMove = playerstate.value;
-        fps.enableHeadBob = playerstate.value;
+        fpc.cameraCanMove = playerstate.value;
+        fpc.playerCanMove = playerstate.value;
+        fpc.enableHeadBob = playerstate.value;
         if (playerstate.value)
         {
             Cursor.lockState = CursorLockMode.Locked;

@@ -1667,6 +1667,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b1c2db6916de2b14081643c209e84be5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::Person
+  dialogueName: JohnGreeting
 --- !u!65 &1956643520
 BoxCollider:
   m_ObjectHideFlags: 0
