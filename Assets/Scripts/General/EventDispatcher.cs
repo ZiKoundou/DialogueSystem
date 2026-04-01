@@ -1,6 +1,8 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.UI;
+using UnityEngine.UIElements;
 
 public class Event
 {
@@ -30,6 +32,15 @@ public class ToggleLock : Event
     public bool value;
 }
 public class HideUI : Event
+{
+
+}
+public class ShowVisualPortrait : Event
+{
+    public Texture2D pic;
+}
+
+public class HideVisualPortrait: Event
 {
 
 }

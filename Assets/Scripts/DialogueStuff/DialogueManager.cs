@@ -6,7 +6,7 @@ public class DialogueManager : Singleton<DialogueManager>
 {
     public DialogueDatabase database;
     DialogueLine m_currentLine = null;
-    private const float kDefaultTime = 5.0f;
+    private const float kDefaultTime = 2.0f;
     private float m_currentWaitTime = 0.0f;
     private float m_currentTime = 0.0f;
 
@@ -67,6 +67,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 }    
 
                 m_currentWaitTime = 0.0f;
+                m_currentTime = 0.0f;
             }
         }
         
@@ -101,6 +102,20 @@ public class DialogueManager : Singleton<DialogueManager>
                 text = m_currentLine.dialogue,
             });
 
+            if(m_currentLine.character.characterTexture != null)
+            {
+                //tell UI image to show visual portrait
+                EventDispatcher.instance.SendEvent<ShowVisualPortrait>(new ShowVisualPortrait
+                {
+                    pic = m_currentLine.character.characterTexture
+                });
+            }
+            else
+            {
+                //otherwise send a hide visual portrait
+                EventDispatcher.instance.SendEvent<HideVisualPortrait>(new HideVisualPortrait { });
+            }
+
             
             //Tell Audio System to play audio
             if (m_currentLine.dialogueAudio != null)
@@ -117,7 +132,7 @@ public class DialogueManager : Singleton<DialogueManager>
         }
         else
         {
-            Debug.Log(string.Format("Couldn't find Dialgogue Line {0}", dialogueName));
+            Debug.Log(string.Format("Couldn't find Dialogue Line {0}", dialogueName));
         }
     }
     //void CancelDialogue()

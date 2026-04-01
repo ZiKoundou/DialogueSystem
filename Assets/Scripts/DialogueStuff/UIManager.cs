@@ -1,4 +1,4 @@
-using NUnit.Framework;
+
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
@@ -11,6 +11,9 @@ public class UIManager : Singleton<UIManager>
     public TMPro.TextMeshProUGUI dialogueText;
     public GameObject buttonPrefab;
     public Transform buttonContainer;
+    public RawImage profPic;
+    public GameObject profPicContainer;
+
 
     private List<GameObject> activeButtons = new List<GameObject>();
     private TextReveal typeWriter = null;
@@ -20,6 +23,8 @@ public class UIManager : Singleton<UIManager>
         EventDispatcher.instance.AddListener<ShowUI>(ShowDialogueText);
         EventDispatcher.instance.AddListener<ShowResponses>(ShowResponseButtons);
         EventDispatcher.instance.AddListener<HideUI>(HideCanvas);
+        EventDispatcher.instance.AddListener<ShowVisualPortrait>(ShowVisualPortraitImage);
+        EventDispatcher.instance.AddListener<HideVisualPortrait>(HideVisualPortraitImage);
     }
 
     private void OnDisable()
@@ -27,6 +32,8 @@ public class UIManager : Singleton<UIManager>
         EventDispatcher.instance.RemoveListener<ShowUI>(ShowDialogueText);
         EventDispatcher.instance.RemoveListener<ShowResponses>(ShowResponseButtons);
         EventDispatcher.instance.RemoveListener<HideUI>(HideCanvas);
+        EventDispatcher.instance.RemoveListener<ShowVisualPortrait>(ShowVisualPortraitImage);
+        EventDispatcher.instance.RemoveListener<HideVisualPortrait>(HideVisualPortraitImage);
     }
 
     private void HideCanvas(HideUI eventData)
@@ -69,6 +76,20 @@ public class UIManager : Singleton<UIManager>
         isRevealing = true;
         
         
+    }
+
+    private void ShowVisualPortraitImage(ShowVisualPortrait imageData)
+    {
+        if (imageData.pic != null)
+        {
+            profPic.texture = imageData.pic;
+        }
+        profPicContainer?.SetActive(true);
+    }
+
+    private void HideVisualPortraitImage(HideVisualPortrait imageData)
+    {
+        profPicContainer?.SetActive(false);
     }
     // Update is called once per frame
     void Update()

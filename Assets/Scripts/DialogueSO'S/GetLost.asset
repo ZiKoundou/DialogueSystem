@@ -13,6 +13,6 @@ MonoBehaviour:
   m_Name: GetLost
   m_EditorClassIdentifier: 
   dialogue: Get Lost
-  character: {fileID: 0}
+  character: {fileID: 11400000, guid: ddea5adab336c7046b63aa84c47b4896, type: 2}
   dialogueAudio: {fileID: 0}
   responses: []
