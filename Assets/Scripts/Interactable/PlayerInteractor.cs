@@ -16,6 +16,7 @@ public class PlayerInteractor : MonoBehaviour
         if (currentInteractable != null && Input.GetKeyDown(KeyCode.E))
         {
             currentInteractable.Interact();
+            ui.Hide();
         }
     }
 
