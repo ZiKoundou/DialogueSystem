@@ -1029,6 +1029,7 @@ MonoBehaviour:
   buttonContainer: {fileID: 847975651}
   profPic: {fileID: 679656209}
   profPicContainer: {fileID: 679656205}
+  characterText: {fileID: 488142784}
 --- !u!4 &662291063
 Transform:
   m_ObjectHideFlags: 0

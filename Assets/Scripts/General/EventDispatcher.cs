@@ -37,12 +37,17 @@ public class HideUI : Event
 }
 public class ShowVisualPortrait : Event
 {
-    public Texture2D pic;
+    public Texture2D texture;
 }
 
 public class HideVisualPortrait: Event
 {
 
+}
+
+public class ShowCharacterName: Event
+{
+    public string text;
 }
 
 public class EventDispatcher : Singleton<EventDispatcher>

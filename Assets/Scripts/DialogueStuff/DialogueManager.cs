@@ -107,7 +107,7 @@ public class DialogueManager : Singleton<DialogueManager>
                 //tell UI image to show visual portrait
                 EventDispatcher.instance.SendEvent<ShowVisualPortrait>(new ShowVisualPortrait
                 {
-                    pic = m_currentLine.character.characterTexture
+                    texture = m_currentLine.character.characterTexture
                 });
             }
             else
@@ -115,6 +115,17 @@ public class DialogueManager : Singleton<DialogueManager>
                 //otherwise send a hide visual portrait
                 EventDispatcher.instance.SendEvent<HideVisualPortrait>(new HideVisualPortrait { });
             }
+
+            //tell ui system to change name
+            if(m_currentLine.character.characterName != null)
+            {
+                //send event for the character names
+                EventDispatcher.instance.SendEvent<ShowCharacterName>(new ShowCharacterName
+                {
+                    text = m_currentLine.character.characterName
+                });
+            }
+
 
             
             //Tell Audio System to play audio

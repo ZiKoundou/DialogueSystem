@@ -2,6 +2,7 @@
 using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
+using System;
 
 public class UIManager : Singleton<UIManager>
 {
@@ -13,6 +14,7 @@ public class UIManager : Singleton<UIManager>
     public Transform buttonContainer;
     public RawImage profPic;
     public GameObject profPicContainer;
+    public TMPro.TextMeshProUGUI characterText;
 
 
     private List<GameObject> activeButtons = new List<GameObject>();
@@ -25,7 +27,10 @@ public class UIManager : Singleton<UIManager>
         EventDispatcher.instance.AddListener<HideUI>(HideCanvas);
         EventDispatcher.instance.AddListener<ShowVisualPortrait>(ShowVisualPortraitImage);
         EventDispatcher.instance.AddListener<HideVisualPortrait>(HideVisualPortraitImage);
+        EventDispatcher.instance.AddListener<ShowCharacterName>(ShowCharacterNameText);
     }
+
+
 
     private void OnDisable()
     {
@@ -80,9 +85,9 @@ public class UIManager : Singleton<UIManager>
 
     private void ShowVisualPortraitImage(ShowVisualPortrait imageData)
     {
-        if (imageData.pic != null)
+        if (imageData.texture != null)
         {
-            profPic.texture = imageData.pic;
+            profPic.texture = imageData.texture;
         }
         profPicContainer?.SetActive(true);
     }
@@ -90,6 +95,11 @@ public class UIManager : Singleton<UIManager>
     private void HideVisualPortraitImage(HideVisualPortrait imageData)
     {
         profPicContainer?.SetActive(false);
+    }
+
+    private void ShowCharacterNameText(ShowCharacterName nameData)
+    {
+        characterText.text = nameData.text;
     }
     // Update is called once per frame
     void Update()
