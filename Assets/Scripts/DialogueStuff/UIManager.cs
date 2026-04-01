@@ -6,8 +6,11 @@ using System;
 
 public class UIManager : Singleton<UIManager>
 {
-    
+
+    [Header("UI Parameters")]
     public float charSpeed = 0.2f;
+
+    [Header("UI References")]
     public GameObject UICanvas;
     public TMPro.TextMeshProUGUI dialogueText;
     public GameObject buttonPrefab;
@@ -20,6 +23,11 @@ public class UIManager : Singleton<UIManager>
     private List<GameObject> activeButtons = new List<GameObject>();
     private TextReveal typeWriter = null;
     private bool isRevealing = false;
+
+    private void Start()
+    {
+        UICanvas.SetActive(false);
+    }
     private void OnEnable()
     {
         EventDispatcher.instance.AddListener<ShowUI>(ShowDialogueText);
