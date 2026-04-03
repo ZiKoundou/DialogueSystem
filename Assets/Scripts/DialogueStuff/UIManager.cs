@@ -47,6 +47,7 @@ public class UIManager : Singleton<UIManager>
         EventDispatcher.instance.RemoveListener<HideUI>(HideCanvas);
         EventDispatcher.instance.RemoveListener<ShowVisualPortrait>(ShowVisualPortraitImage);
         EventDispatcher.instance.RemoveListener<HideVisualPortrait>(HideVisualPortraitImage);
+        EventDispatcher.instance.RemoveListener<ShowCharacterName>(ShowCharacterNameText);
     }
 
     private void HideCanvas(HideUI eventData)
@@ -119,6 +120,7 @@ public class UIManager : Singleton<UIManager>
             if(typeWriter.IsTextRevealed())
             {
                 isRevealing = false;
+                //stops updating the text
             }
         }
         

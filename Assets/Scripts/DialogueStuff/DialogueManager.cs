@@ -11,7 +11,16 @@ public class DialogueManager : Singleton<DialogueManager>
     private float m_currentTime = 0.0f;
 
     Dictionary<string, DialogueLine> m_DialogueTable = new Dictionary<string, DialogueLine>();
-    
+
+    private void OnEnable()
+    {
+        EventDispatcher.instance.AddListener<RevealedNewCharacter>(TriggerSound);
+    }
+
+    private void Disable()
+    {
+        EventDispatcher.instance.RemoveListener<RevealedNewCharacter>(TriggerSound);
+    }
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
@@ -90,6 +99,24 @@ public class DialogueManager : Singleton<DialogueManager>
         }
     }
 
+    public void TriggerSound(RevealedNewCharacter newCharacter)
+    {
+        //if the frequency is set to 0, we don't want to play a sound
+        if (newCharacter.index % m_currentLine.character.dialogueVoice.frequency == 0)
+        {
+            if (m_currentLine.dialogue != null)
+            {
+                EventDispatcher.instance.SendEvent<PlayRandomSound>(new PlayRandomSound
+                {
+                    sounds = m_currentLine.character.dialogueVoice.clips,
+                    minPitch = m_currentLine.character.dialogueVoice.minPitch,
+                    maxPitch = m_currentLine.character.dialogueVoice.maxPitch,
+                });
+            }
+        }
+
+    }
+
     public void StartDialogue(string dialogueName)
     {
         if (m_DialogueTable.TryGetValue(dialogueName, out m_currentLine))
@@ -127,15 +154,15 @@ public class DialogueManager : Singleton<DialogueManager>
             }
 
 
-            
-            //Tell Audio System to play audio
-            if (m_currentLine.dialogueAudio != null)
+
+            //Tell Audio System to play audio   
+            if (m_currentLine.dialogue != null)
             {
-                m_currentWaitTime = m_currentLine.dialogueAudio.length;
-                //Tell AUdio system to start playing.
-                EventDispatcher.instance.SendEvent<PlaySound>(new PlaySound
+                EventDispatcher.instance.SendEvent<PlayRandomSound>(new PlayRandomSound
                 {
-                    sound = m_currentLine.dialogueAudio,
+                    sounds = m_currentLine.character.dialogueVoice.clips,
+                    minPitch = m_currentLine.character.dialogueVoice.minPitch,
+                    maxPitch = m_currentLine.character.dialogueVoice.maxPitch,
                 });
             }
             //Wait for time to expire

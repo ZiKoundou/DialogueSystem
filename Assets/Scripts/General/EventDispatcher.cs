@@ -18,6 +18,12 @@ public class PlaySound : Event
 {
     public AudioClip sound;
 }
+public class PlayRandomSound : Event
+{
+    public List<AudioClip> sounds;
+    public float minPitch;
+    public float maxPitch;
+}
 public class UIResponseData
 {
     public string text;
@@ -48,6 +54,12 @@ public class HideVisualPortrait: Event
 public class ShowCharacterName: Event
 {
     public string text;
+}
+
+public class RevealedNewCharacter: Event
+{
+    public char character;
+    public int index;
 }
 
 public class EventDispatcher : Singleton<EventDispatcher>

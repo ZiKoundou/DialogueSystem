@@ -12,9 +12,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6a21348fb4a874cb32f1561b220f0c, type: 3}
   m_Name: JohnGreeting
   m_EditorClassIdentifier: 
-  dialogue: Hello my Friend.
+  dialogue: Hello my Friend. What is gooddie my gangiliocuos frindd or wtvr
   character: {fileID: 11400000, guid: a19b6a70ace186046b0f2df152fa4fa5, type: 2}
-  dialogueAudio: {fileID: 8300000, guid: 722fbfe9ce3de19418da51bdfa749d41, type: 3}
   responses:
   - {fileID: 11400000, guid: 1e3641abc4b5dac44b98cfbc602655bd, type: 2}
   - {fileID: 11400000, guid: e51759c4357614244a0700ad43d70d07, type: 2}

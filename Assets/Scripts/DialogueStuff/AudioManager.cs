@@ -1,3 +1,4 @@
+using NUnit.Framework;
 using UnityEngine;
 
 public class AudioManager : Singleton<AudioManager>
@@ -7,6 +8,7 @@ public class AudioManager : Singleton<AudioManager>
     private void OnEnable()
     {
         EventDispatcher.instance.AddListener<PlaySound>(OnPlaySound);
+        EventDispatcher.instance.AddListener<PlayRandomSound>(OnPlayRandomSound);
     }
 
     private void OnDisable()
@@ -19,4 +21,13 @@ public class AudioManager : Singleton<AudioManager>
         source.Stop();
         source.PlayOneShot(eventData.sound);
     }
+
+    private void OnPlayRandomSound(PlayRandomSound eventData)
+    {
+        source.Stop();
+        source.pitch = Random.Range(eventData.minPitch, eventData.maxPitch);
+        source.PlayOneShot(eventData.sounds[Random.Range(0,eventData.sounds.Count)]);
+    }
+
+
 }

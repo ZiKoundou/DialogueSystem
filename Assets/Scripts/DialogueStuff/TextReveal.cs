@@ -18,11 +18,19 @@ public class TextReveal
         currentTime += Time.deltaTime;
         if (currentTime >= CharSpeed)// if timer goes off
         {
+            
+
             //check if reached the end
             if (Text.Length > revealIndex)
             {
+                // new character event
                 revealIndex++;
                 currentTime = 0;
+                EventDispatcher.instance.SendEvent<RevealedNewCharacter>(new RevealedNewCharacter
+                {
+                    character = Text[revealIndex],
+                    index = revealIndex
+                });
             }
         }
     }

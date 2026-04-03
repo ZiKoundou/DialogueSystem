@@ -12,7 +12,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9c6a21348fb4a874cb32f1561b220f0c, type: 3}
   m_Name: HiBack
   m_EditorClassIdentifier: 
-  dialogue: Hi Back
+  dialogue: Hi
   character: {fileID: 11400000, guid: ddea5adab336c7046b63aa84c47b4896, type: 2}
   dialogueAudio: {fileID: 0}
   responses: []

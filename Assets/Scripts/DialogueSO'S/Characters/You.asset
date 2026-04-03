@@ -10,7 +10,8 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: b8952972c612c134f919689b6856f52f, type: 3}
-  m_Name: Kawaii Jose
-  m_EditorClassIdentifier: 
-  characterName: Kawaii Jose
-  characterTexture: {fileID: 2800000, guid: 9500d68338277b649ac9b07b670aef16, type: 3}
+  m_Name: You
+  m_EditorClassIdentifier: Assembly-CSharp::CharacterID
+  characterName: You
+  characterTexture: {fileID: 0}
+  dialogueVoice: {fileID: 11400000, guid: 67e464a6713b2234a81389f12f1af86d, type: 2}
